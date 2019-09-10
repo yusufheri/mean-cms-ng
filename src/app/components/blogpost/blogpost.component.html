@@ -1,1 +1,19 @@
-<p>blogpost works!</p>
+<mat-card class="example-card" *ngIf="(blogPost$ | async) as bp; else loading">
+    <mat-card-header class="no-margin">
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ bp.title }}</mat-card-title>
+        <mat-card-subtitle>{{ bp.subTitle }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{ bp.image }}" alt="{{ bp.title }}">
+    <mat-card-content>
+        <p>{{ bp.content }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+    </mat-card-actions>
+</mat-card>
+
+<ng-template #loading>
+    ...loading
+</ng-template>
