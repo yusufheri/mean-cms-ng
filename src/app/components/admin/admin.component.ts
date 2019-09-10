@@ -24,19 +24,22 @@ export class AdminComponent implements OnInit {
     const ids = selectionOptions.map(so => so.value );
     if (ids.length === 1) {
       this.blogPostService.getDeleteSingleBlogpost(ids[0]).subscribe(
-        data => this.refresh(data), err => console.error(err)
+        data => this.refresh(data), err => this.handleError(err)
       );
     } else {
       this.blogPostService.getDeleteBlogpost(ids).subscribe(
-        data => this.refresh(data), err => console.error(err)
+        data => this.refresh(data), err => this.handleError(err)
       );
     }
   }
 
   refresh(data) {
-    //  console.log(data);
     this.blogPostService.getBlogPosts().subscribe(result => {
       this.allBlogposts = result;
     });
+  }
+
+  handleError(error) {
+    console.log(error);
   }
 }
