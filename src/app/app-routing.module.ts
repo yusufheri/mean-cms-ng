@@ -3,9 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { BlogpostListComponent } from './components/blogpost-list/blogpost-list.component';
 import { BlogpostComponent } from './components/blogpost/blogpost.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: BlogpostListComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'blog-posts/:id', component: BlogpostComponent },
   { path: '**', component: NotFoundComponent }
 ];

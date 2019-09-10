@@ -10,6 +10,7 @@ import { BlogpostListComponent } from './components/blogpost-list/blogpost-list.
 
 import { MaterialModule } from './material.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     BlogpostComponent,
     BlogpostListComponent,
     NotFoundComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
