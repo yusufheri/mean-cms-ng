@@ -11,11 +11,16 @@ export class BlogpostService {
 
   constructor(private httpClient: HttpClient) { }
 
+  /** Get All Blog Posts from MongoDB */
   getBlogPosts(): Observable<BlogPost[]> {
     return this.httpClient.get<BlogPost[]>(`${this.baseUrl}/blog-posts`);
   }
 
   getBlogPostById(id: string): Observable<BlogPost> {
     return this.httpClient.get<BlogPost>(`${this.baseUrl}/blog-posts/${id}`);
+  }
+
+  getDeleteSingleBlogpost(id: string) {
+    return this.httpClient.delete(`${this.baseUrl}/blog-posts/${id}`);
   }
 }
