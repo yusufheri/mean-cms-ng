@@ -9,12 +9,14 @@ import { BlogpostComponent } from './components/blogpost/blogpost.component';
 import { BlogpostListComponent } from './components/blogpost-list/blogpost-list.component';
 
 import { MaterialModule } from './material.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogpostComponent,
     BlogpostListComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
