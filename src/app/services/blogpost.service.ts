@@ -23,4 +23,9 @@ export class BlogpostService {
   getDeleteSingleBlogpost(id: string) {
     return this.httpClient.delete(`${this.baseUrl}/blog-posts/${id}`);
   }
+
+  getDeleteBlogpost(ids: string[]) {
+    const allIds = ids.join(',');
+    return this.httpClient.delete(`${this.baseUrl}/blog-posts/?ids=${allIds}`);
+  }
 }
