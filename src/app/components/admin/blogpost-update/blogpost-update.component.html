@@ -2,13 +2,13 @@
     <form  [formGroup]="editForm" #formDirective="ngForm" (submit)="updateBlogpost(formDirective)">
         <div class="example-container">
             <mat-form-field>
-                <input matInput placeholder="Title" formControlName="title" [value]="bp.title">
+                <input matInput placeholder="Title" formControlName="title" [value]="bp.title" id="title">
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Sub-title" formControlName="subTitle" [value]="bp.subTitle">
+                <input matInput placeholder="Sub-title" formControlName="subTitle" [value]="bp.subTitle" id="subTitle">
             </mat-form-field>
             <mat-form-field>
-                <textarea matInput placeholder="Content" formControlName="content" [value]="bp.content"></textarea>
+                <textarea matInput placeholder="Content" formControlName="content" [value]="bp.content" id="content"></textarea>
             </mat-form-field>
             <label > Choose image</label>
             <input type="file" name="image" id="image">

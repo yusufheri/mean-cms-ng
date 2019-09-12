@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { BlogPost } from '../../../models/blogpost';
 import { FormGroup, FormControl, FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { BlogpostService } from '../../../services/blogpost.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-blogpost-update',
@@ -11,26 +11,34 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BlogpostUpdateComponent implements OnInit {
 
-  editForm: FormGroup;
+  //  editForm: FormGroup;
   blogpost: BlogPost;
   blogpostId: string;
+
+  editForm = new FormGroup({
+    title: new FormControl(''),
+    subTitle: new FormControl(''),
+    content: new FormControl(''),
+    image: new FormControl('')
+  });
 
   constructor(
       private formBuilder: FormBuilder,
       private blogpostService: BlogpostService,
       private activateRoute: ActivatedRoute,
-      private el: ElementRef) { }
+      private el: ElementRef,
+      private router: Router) { }
 
   ngOnInit() {
     this.blogpostId = this.activateRoute.snapshot.paramMap.get('id');
     this.blogpostService.getBlogPostById(this.blogpostId).subscribe(
       data => this.blogpost = data, error => console.error(error));
-    this.editForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      subTitle:  ['', Validators.required],
-      content:  ['', Validators.required],
+   /*  this.editForm = this.formBuilder.group({
+      title: '',
+      subTitle:  '',
+      content: '',
       image: ''
-    });
+    }); */
   }
 
   upload() {
@@ -46,6 +54,11 @@ export class BlogpostUpdateComponent implements OnInit {
   }
 
   updateBlogpost(formDirective: FormGroupDirective) {
+
+    this.editForm.value['title'] = this.el.nativeElement.querySelector('#title').value;
+    this.editForm.value['subTitle'] = this.el.nativeElement.querySelector('#subTitle').value;
+    this.editForm.value['content'] = this.el.nativeElement.querySelector('#content').value;
+
     if (this.editForm.valid) {
       console.log(this.editForm.value);
       this.blogpostService
@@ -59,6 +72,7 @@ export class BlogpostUpdateComponent implements OnInit {
     this.editForm.reset();
     formDirective.resetForm();
     this.blogpostService.dispatchBlogpostCreated(data._id);
+    this.router.navigate(['/admin']);
   }
 
   handleError(err) {
