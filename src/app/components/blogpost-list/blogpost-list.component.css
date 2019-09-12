@@ -1,9 +1,9 @@
 .example-card {
-    padding-bottom: 100px;
+    padding-bottom: 30px;
     border-radius: 0px;
   }
 mat-card img{
-    width: 50%;
+    width: 100%;
     padding-left: 15px;
 }
 

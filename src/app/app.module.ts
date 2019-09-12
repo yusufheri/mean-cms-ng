@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,8 @@ import { BlogpostListComponent } from './components/blogpost-list/blogpost-list.
 import { MaterialModule } from './material.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { BlogpostCreateComponent } from './components/admin/blogpost-create/blogpost-create.component';
+import { BlogpostUpdateComponent } from './components/admin/blogpost-update/blogpost-update.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +22,17 @@ import { AdminComponent } from './components/admin/admin.component';
     BlogpostListComponent,
     NotFoundComponent,
     AdminComponent,
+    BlogpostCreateComponent,
+    BlogpostUpdateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

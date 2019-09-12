@@ -1,6 +1,6 @@
 <mat-selection-list #blogPosts>
     <mat-list-option *ngFor="let bp of allBlogposts" [value]="bp._id">
-        {{bp.title}}
+        <a [routerLink]="['/admin/blog-posts/', bp._id]">{{bp.title}}</a>
     </mat-list-option>
 </mat-selection-list>    
 <mat-card>
@@ -14,3 +14,4 @@
         >Delete</button>
     </mat-card-actions>
 </mat-card>
+<app-blogpost-create></app-blogpost-create>

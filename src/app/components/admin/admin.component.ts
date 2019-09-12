@@ -18,6 +18,12 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     //  this.blogPostsList$ = this.blogPostService.getBlogPosts();
     this.blogPostService.getBlogPosts().subscribe(data => this.refresh(data) );
+    this.blogPostService
+      .handleBlogpostCreated()
+      .subscribe(data => {
+        console.log('AdminComponent received', data);
+        this.refresh(data);
+    });
   }
 
   deleteBlogPosts(selectionOptions) {

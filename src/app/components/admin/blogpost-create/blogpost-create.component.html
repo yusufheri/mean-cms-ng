@@ -1,0 +1,22 @@
+<mat-card>
+    <form [formGroup]="creationForm" #formDirective="ngForm" (submit)="createBlogPost(formDirective)">
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput placeholder="Title *" formControlName="title" type="text">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Subtitle *" formControlName="subTitle" type="text">
+            </mat-form-field>
+            <mat-form-field>
+               <textarea matInput formControlName="content" placeholder="Content *"></textarea>
+            </mat-form-field>
+            <label for="image">Choose image</label>
+            <input type="file" name="image" id="image" formControlName="image">
+            <button mat-button type="button" (click)="upload()">Upload image</button>
+            <button mat-button type="submit">Create</button>
+        </div>
+
+    </form>
+</mat-card>
