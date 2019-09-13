@@ -49,7 +49,7 @@ export class BlogpostUpdateComponent implements OnInit {
         tag: 'h1',
       },
     ],
-    uploadUrl: 'v1/image',
+    uploadUrl: 'http://localhost:4000/api/v1/blog-posts/images',
     sanitize: true,
     toolbarPosition: 'top',
 };
@@ -58,12 +58,6 @@ export class BlogpostUpdateComponent implements OnInit {
   blogpost: BlogPost;
   blogpostId: string;
 
-  editForm = new FormGroup({
-    title: new FormControl(''),
-    subTitle: new FormControl(''),
-    content: new FormControl(''),
-    image: new FormControl('')
-  });
 
   constructor(
       private formBuilder: FormBuilder,
@@ -76,12 +70,6 @@ export class BlogpostUpdateComponent implements OnInit {
     this.blogpostId = this.activateRoute.snapshot.paramMap.get('id');
     this.blogpostService.getBlogPostById(this.blogpostId).subscribe(
       data => this.blogpost = data, error => console.error(error));
-   /*  this.editForm = this.formBuilder.group({
-      title: '',
-      subTitle:  '',
-      content: '',
-      image: ''
-    }); */
   }
 
   upload() {
@@ -98,21 +86,27 @@ export class BlogpostUpdateComponent implements OnInit {
 
   updateBlogpost(formDirective: FormGroupDirective) {
 
-    this.editForm.value['title'] = this.el.nativeElement.querySelector('#title').value;
+    /* this.editForm.value['title'] = this.el.nativeElement.querySelector('#title').value;
     this.editForm.value['subTitle'] = this.el.nativeElement.querySelector('#subTitle').value;
-    this.editForm.value['content'] = this.el.nativeElement.querySelector('#content').value;
+    this.editForm.value['content'] = this.el.nativeElement.querySelector('#content').value; 
 
     if (this.editForm.valid) {
       console.log(this.editForm.value);
       this.blogpostService
         .updatedBlogPost(this.blogpost._id, this.editForm.value)
         .subscribe(data => this.handleSuccess(data, formDirective), error => this.handleError(error));
-    }
+    } */
+    const editBlogpost = this.blogpost;
+    console.log('editBlogpost', editBlogpost);
+    this.blogpostService
+    .updatedBlogPost(this.blogpost._id, editBlogpost)
+    .subscribe(data => this.handleSuccess(data, formDirective), error => this.handleError(error));
   }
 
   handleSuccess(data, formDirective) {
     console.log('OK handleSuccess - blog post updated', data);
-    this.editForm.reset();
+    //  this.editForm.reset();
+    formDirective.reset();
     formDirective.resetForm();
     this.blogpostService.dispatchBlogpostCreated(data._id);
     this.router.navigate(['/admin']);
