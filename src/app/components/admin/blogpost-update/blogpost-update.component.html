@@ -1,5 +1,5 @@
 <mat-card *ngIf="blogpost as bp, else loading">
-    <form  [formGroup]="editForm" #formDirective="ngForm" (submit)="updateBlogpost(formDirective)">
+    <form  [formGroup]="editForm" #formDirective="ngForm" (ngSubmit)="updateBlogpost(formDirective)">
         <div class="example-container">
             <mat-form-field>
                 <input matInput placeholder="Title" formControlName="title" [value]="bp.title" id="title">
