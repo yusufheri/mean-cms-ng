@@ -4,4 +4,7 @@ export interface BlogPost {
     subtitle: string;
     image: string;
     content: string;
+    slug: string;
+    like: number;
+    disLike: number;
 }

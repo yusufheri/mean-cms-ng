@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: BlogpostListComponent },
   { path: 'admin', component: AdminComponent },
     { path: 'admin/blog-posts/:id', component: BlogpostUpdateComponent },
-  { path: 'blog-posts/:id', component: BlogpostComponent },
+  { path: 'blog-posts/:id/:slug', component: BlogpostComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

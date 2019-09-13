@@ -6,6 +6,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 //  import { NgxEditorModule  } from 'ngx-editor';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
+//  Pipes
+import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+import { SlugifyPipe } from './pipes/slugify.pipe';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,7 +22,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { BlogpostCreateComponent } from './components/admin/blogpost-create/blogpost-create.component';
 import { BlogpostUpdateComponent } from './components/admin/blogpost-update/blogpost-update.component';
 
-import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +34,7 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
     BlogpostCreateComponent,
     BlogpostUpdateComponent,
     TruncateTextPipe,
+    SlugifyPipe
   ],
   imports: [
     BrowserModule,
@@ -39,9 +44,9 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    AngularEditorModule,
+    AngularEditorModule
   ],
-  providers: [],
+  providers: [ SlugifyPipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
