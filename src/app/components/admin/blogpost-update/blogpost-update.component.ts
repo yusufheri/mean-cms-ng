@@ -3,6 +3,8 @@ import { BlogPost } from '../../../models/blogpost';
 import { FormGroup, FormControl, FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { BlogpostService } from '../../../services/blogpost.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+
 
 @Component({
   selector: 'app-blogpost-update',
@@ -10,6 +12,47 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./blogpost-update.component.css']
 })
 export class BlogpostUpdateComponent implements OnInit {
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '0',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        {class: 'arial', name: 'Arial'},
+        {class: 'times-new-roman', name: 'Times New Roman'},
+        {class: 'calibri', name: 'Calibri'},
+        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      ],
+      customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    uploadUrl: 'v1/image',
+    sanitize: true,
+    toolbarPosition: 'top',
+};
 
   //  editForm: FormGroup;
   blogpost: BlogPost;
