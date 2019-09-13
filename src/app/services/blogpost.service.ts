@@ -9,13 +9,35 @@ import { SlugifyPipe } from '../pipes/slugify.pipe';
   providedIn: 'root'
 })
 export class BlogpostService {
+
   baseUrl = 'http://localhost:4000/api/v1/blog-posts';
   private blogpostCreated = new Subject<string>();
+  blogPosts: BlogPost[] = [];
 
   constructor(private httpClient: HttpClient, private slugifyPipe: SlugifyPipe) { }
 
   slugify(input: string) {
     return this.slugifyPipe.transform(input);
+  }
+
+  likePost(post: BlogPost) {
+    post.like ++;
+    this.likeBlogPost(post._id, post)
+    .subscribe((data: any) => {
+      post.like = data.response.like;
+      post.disLike = data.response.disLike;
+    } , error => console.error(error) );
+    this.dispatchBlogpostCreated(post._id);
+  }
+
+  disLike(post: BlogPost) {
+    post.disLike ++;
+    this.dislikeBlogPost(post._id, post)
+    .subscribe((data: any) => {
+      post.like = data.response.like;
+      post.disLike = data.response.disLike;
+    } , error => console.error(error) );
+    this.dispatchBlogpostCreated(post._id);
   }
 
   uploadImage(formData: FormData) {
@@ -46,7 +68,7 @@ export class BlogpostService {
 
   updatedBlogPost(id: string, blogpost: BlogPost) {
     blogpost.slug = this.slugify(blogpost.title);
-    // console.log('blogpost', blogpost);
+    console.log('blogpost', blogpost);
     return this.httpClient.put(`${this.baseUrl}/${id}`, blogpost);
   }
 
@@ -57,5 +79,13 @@ export class BlogpostService {
   getDeleteBlogpost(ids: string[]) {
     const allIds = ids.join(',');
     return this.httpClient.delete(`${this.baseUrl}/?ids=${allIds}`);
+  }
+
+  likeBlogPost(id: string, blogpost: BlogPost) {
+    return this.httpClient.put(`${this.baseUrl}/like-post/${id}`, blogpost);
+  }
+
+  dislikeBlogPost(id: string, blogpost: BlogPost) {
+    return this.httpClient.put(`${this.baseUrl}/dislike-post/${id}`, blogpost);
   }
 }

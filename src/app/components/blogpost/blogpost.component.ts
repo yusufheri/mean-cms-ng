@@ -22,4 +22,12 @@ export class BlogpostComponent implements OnInit {
     this.blogPost$ = this.blogPostService.getBlogPostById(id);
   }
 
+  onLike(post: BlogPost) {
+    this.blogPostService.likePost(post);
+  }
+
+  onDislike(post: BlogPost) {
+    this.blogPostService.disLike(post);
+  }
+
 }
