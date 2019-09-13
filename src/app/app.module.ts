@@ -18,6 +18,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { BlogpostCreateComponent } from './components/admin/blogpost-create/blogpost-create.component';
 import { BlogpostUpdateComponent } from './components/admin/blogpost-update/blogpost-update.component';
 
+import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,7 @@ import { BlogpostUpdateComponent } from './components/admin/blogpost-update/blog
     AdminComponent,
     BlogpostCreateComponent,
     BlogpostUpdateComponent,
+    TruncateTextPipe,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { BlogpostUpdateComponent } from './components/admin/blogpost-update/blog
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    AngularEditorModule
+    AngularEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
