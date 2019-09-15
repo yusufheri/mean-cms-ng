@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 //  import { NgxEditorModule  } from 'ngx-editor';
@@ -22,6 +22,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { BlogpostCreateComponent } from './components/admin/blogpost-create/blogpost-create.component';
 import { BlogpostUpdateComponent } from './components/admin/blogpost-update/blogpost-update.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { AddCookieInterceptor } from './_interceptors/add-cookie.interceptor';
 
 
 
@@ -48,7 +49,10 @@ import { AuthComponent } from './components/auth/auth.component';
     FormsModule,
     AngularEditorModule
   ],
-  providers: [ SlugifyPipe ],
+  providers: [
+    SlugifyPipe,
+    { provide: HTTP_INTERCEPTORS, useClass: AddCookieInterceptor, multi: true }
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
