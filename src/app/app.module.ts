@@ -21,6 +21,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { BlogpostCreateComponent } from './components/admin/blogpost-create/blogpost-create.component';
 import { BlogpostUpdateComponent } from './components/admin/blogpost-update/blogpost-update.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 
 
@@ -34,7 +35,8 @@ import { BlogpostUpdateComponent } from './components/admin/blogpost-update/blog
     BlogpostCreateComponent,
     BlogpostUpdateComponent,
     TruncateTextPipe,
-    SlugifyPipe
+    SlugifyPipe,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

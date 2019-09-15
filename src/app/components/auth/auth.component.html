@@ -1,0 +1,13 @@
+<mat-card>
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput type="text" name="username" id="username" [(ngModel)]="user.username" placeholder=" Enter username">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="password" name="password" id="password" [(ngModel)]="user.password"placeholder="Enter password">
+            </mat-form-field>
+            <button mat-button type="submit" [disabled]="!loginForm.form.valid">Sign in</button>
+        </div>        
+    </form>
+</mat-card>

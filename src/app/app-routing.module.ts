@@ -5,11 +5,13 @@ import { BlogpostComponent } from './components/blogpost/blogpost.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { BlogpostUpdateComponent } from './components/admin/blogpost-update/blogpost-update.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 const routes: Routes = [
   { path: '', component: BlogpostListComponent },
+  { path: 'login', component: AuthComponent },
   { path: 'admin', component: AdminComponent },
-    { path: 'admin/blog-posts/:id', component: BlogpostUpdateComponent },
+  { path: 'admin/blog-posts/:id', component: BlogpostUpdateComponent },
   { path: 'blog-posts/:id/:slug', component: BlogpostComponent },
   { path: '**', component: NotFoundComponent },
 ];
